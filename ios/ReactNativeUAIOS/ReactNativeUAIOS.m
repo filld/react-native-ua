@@ -93,6 +93,11 @@ RCT_EXPORT_METHOD(removeTag:(NSString *)tag) {
     [[UAirship push] updateRegistration];
 }
 
+RCT_EXPORT_METHOD(addEvent:(NSString *)eventName: (NSNumber * _Nonnull)eventValue) {
+    UACustomEvent *event = [UACustomEvent eventWithName:eventName value:eventValue];
+    [[UAirship shared].analytics addEvent:event];
+}
+
 RCT_EXPORT_METHOD(setNamedUserId:(NSString *)nameUserId) {
     [UAirship namedUser].identifier = nameUserId;
 }
