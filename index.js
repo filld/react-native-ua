@@ -99,6 +99,10 @@ class ReactNativeUA {
     static remove_tag (tag) {
         bridge.removeTag(tag);
     }
+  
+    static add_event (name, value) {
+        bridge.addEvent(name, value);
+    }
 
     /*
     * @param {Object} time
