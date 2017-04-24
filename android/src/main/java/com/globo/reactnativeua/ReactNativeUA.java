@@ -18,6 +18,7 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.Callback;
 import com.urbanairship.Autopilot;
 import com.urbanairship.UAirship;
+import com.urbanairship.analytics.CustomEvent;
 import com.urbanairship.push.notifications.DefaultNotificationFactory;
 import com.urbanairship.push.notifications.NotificationFactory;
 
@@ -90,6 +91,12 @@ public class ReactNativeUA extends ReactContextBaseJavaModule {
         UAirship.shared().getNamedUser().setId(namedUserID);
     }
 
+    @ReactMethod
+    public void addEvent(String eventName, int eventValue) {
+        CustomEvent event = new CustomEvent.Builder(eventName).setEventValue(eventValue).create();
+        UAirship.shared().getAnalytics().addEvent(event);
+    }
+    
     @ReactMethod
     public void enableLocationUpdates() {
         UAirship.shared().getLocationManager().setLocationUpdatesEnabled(true);
